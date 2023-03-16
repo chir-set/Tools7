@@ -20,6 +20,7 @@ include(${Slicer_USE_FILE})
 #-----------------------------------------------------------------------------
 # Extension modules
 add_subdirectory(TemplateROICrop)
+add_subdirectory(FlipViewPoint)
 ## NEXT_MODULE
 
 #-----------------------------------------------------------------------------
