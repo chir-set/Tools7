@@ -21,6 +21,7 @@ include(${Slicer_USE_FILE})
 # Extension modules
 add_subdirectory(TemplateROICrop)
 add_subdirectory(FlipViewPoint)
+add_subdirectory(Silhouette)
 ## NEXT_MODULE
 
 #-----------------------------------------------------------------------------
