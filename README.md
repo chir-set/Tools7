@@ -6,4 +6,8 @@
 
 [Silhouette](https://github.com/chir-set/Tools7/tree/master/Silhouette/) : create an outline model of a segment.
 
+[Body isolation](https://github.com/chir-set/Tools7/tree/master/BodyIsolation/) : isolate the body in common CT scans.
+
+
+
 
