@@ -9,5 +9,9 @@
 [Body isolation](https://github.com/chir-set/Tools7/tree/master/BodyIsolation/) : isolate the body in common CT scans.
 
 
+### License
+
+This work, as a whole, is licensed under the terms of the [CeCILL-B](http://cecill.info/licences/Licence_CeCILL-B_V1-en.txt) free software license agreement (BSD style).
+
 
 
