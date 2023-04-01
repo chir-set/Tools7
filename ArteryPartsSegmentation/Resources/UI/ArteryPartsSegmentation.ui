@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ArteryPartsSegmentation</class>
+ <widget class="qMRMLWidget" name="ArteryPartsSegmentation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>395</width>
+    <height>521</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="inputShapeLabel">
+       <property name="text">
+        <string>Input tube:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="qMRMLNodeComboBox" name="inputShapeSelector">
+       <property name="toolTip">
+        <string>Pick the input Shape::Tube node.</string>
+       </property>
+       <property name="nodeTypes">
+        <stringlist notr="true">
+         <string>vtkMRMLMarkupsShapeNode</string>
+        </stringlist>
+       </property>
+       <property name="showChildNodeTypes">
+        <bool>false</bool>
+       </property>
+       <property name="noneEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="addEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="removeEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="editEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="renameEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="qMRMLNodeComboBox" name="inputVolumeSelector">
+       <property name="toolTip">
+        <string>Pick the input scalar volume node.</string>
+       </property>
+       <property name="nodeTypes">
+        <stringlist notr="true">
+         <string>vtkMRMLScalarVolumeNode</string>
+        </stringlist>
+       </property>
+       <property name="showChildNodeTypes">
+        <bool>false</bool>
+       </property>
+       <property name="noneEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="addEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="removeEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="editEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="renameEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="inputVolumeLabel">
+       <property name="text">
+        <string>Input volume:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="outputSegmentationLabel">
+       <property name="text">
+        <string>Output
+segmentation:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="qMRMLNodeComboBox" name="outputSegmentationSelector">
+       <property name="toolTip">
+        <string>Pick an output segmentation. If none is specified, a new segmentation will be created.</string>
+       </property>
+       <property name="nodeTypes">
+        <stringlist notr="true">
+         <string>vtkMRMLSegmentationNode</string>
+        </stringlist>
+       </property>
+       <property name="showChildNodeTypes">
+        <bool>false</bool>
+       </property>
+       <property name="noneEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="addEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="removeEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="editEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="renameEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="lumenIntensityRangeLabel">
+     <property name="text">
+      <string>Lumen intensity range:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="ctkRangeWidget" name="lumenIntensityRangeWidget">
+       <property name="toolTip">
+        <string>Specify an intensity range to segment the lumen.
+</string>
+       </property>
+       <property name="decimals">
+        <number>1</number>
+       </property>
+       <property name="minimum">
+        <double>50.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>999.000000000000000</double>
+       </property>
+       <property name="minimumValue">
+        <double>99.000000000000000</double>
+       </property>
+       <property name="maximumValue">
+        <double>450.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="previewToolButton">
+       <property name="toolTip">
+        <string>Preview the lumen segment, tweak the theshold range with the slider bar and apply.</string>
+       </property>
+       <property name="text">
+        <string>Preview</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="ctkCollapsibleButton" name="optionsCollapsibleButton">
+     <property name="text">
+      <string>Options</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QCheckBox" name="softCalcificationCheckBox">
+        <property name="toolTip">
+         <string>Attempt to keep isolated wall calcification of low density in the calcification segment. These may be included in the lumen segment otherwise. Use for severely diseased arteries.</string>
+        </property>
+        <property name="text">
+         <string>Account for 'soft' calcification</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="extrusionGroupBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>The 'Smoothing::RemoveExtrusion' effect of the 'Segment editor' is used if checked.</string>
+        </property>
+        <property name="title">
+         <string>Remove lumen extrusion</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <layout class="QFormLayout" name="formLayout_2">
+         <property name="rowWrapPolicy">
+          <enum>QFormLayout::DontWrapRows</enum>
+         </property>
+         <property name="labelAlignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+         <property name="formAlignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+         </property>
+         <item row="1" column="1">
+          <widget class="QDoubleSpinBox" name="extrusionKernelSizeSpinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string>For the 'Smoothing::RemoveExtrusion' effect of the 'Segment editor'.</string>
+           </property>
+           <property name="suffix">
+            <string> mm</string>
+           </property>
+           <property name="minimum">
+            <double>0.100000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>25.000000000000000</double>
+           </property>
+           <property name="singleStep">
+            <double>0.100000000000000</double>
+           </property>
+           <property name="value">
+            <double>1.700000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="extrusionKernelSizeLabel">
+           <property name="text">
+            <string>Kernel size:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="applyButton">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="toolTip">
+      <string>Run the algorithm.</string>
+     </property>
+     <property name="text">
+      <string>Apply</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ctkCollapsibleButton</class>
+   <extends>QWidget</extends>
+   <header>ctkCollapsibleButton.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ctkRangeWidget</class>
+   <extends>QWidget</extends>
+   <header>ctkRangeWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>qMRMLNodeComboBox</class>
+   <extends>QWidget</extends>
+   <header>qMRMLNodeComboBox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>qMRMLWidget</class>
+   <extends>QWidget</extends>
+   <header>qMRMLWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>ArteryPartsSegmentation</sender>
+   <signal>mrmlSceneChanged(vtkMRMLScene*)</signal>
+   <receiver>outputSegmentationSelector</receiver>
+   <slot>setMRMLScene(vtkMRMLScene*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>82</x>
+     <y>135</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>220</x>
+     <y>161</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ArteryPartsSegmentation</sender>
+   <signal>mrmlSceneChanged(vtkMRMLScene*)</signal>
+   <receiver>inputShapeSelector</receiver>
+   <slot>setMRMLScene(vtkMRMLScene*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>122</x>
+     <y>132</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>248</x>
+     <y>61</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ArteryPartsSegmentation</sender>
+   <signal>mrmlSceneChanged(vtkMRMLScene*)</signal>
+   <receiver>inputVolumeSelector</receiver>
+   <slot>setMRMLScene(vtkMRMLScene*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>208</x>
+     <y>201</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>269</x>
+     <y>69</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -8,6 +8,8 @@
 
 [Body isolation](https://github.com/chir-set/Tools7/tree/master/BodyIsolation/) : isolate the body in common CT scans.
 
+[Artery parts segmentation](https://github.com/chir-set/Tools7/tree/master/ArteryPartsSegmentation/) :  segment a contrasted diseased artery in lumen, calcification and soft lesion.
+
 
 ### License
 
