@@ -24,6 +24,7 @@ add_subdirectory(FlipViewPoint)
 add_subdirectory(Silhouette)
 add_subdirectory(BodyIsolation)
 add_subdirectory(ArteryPartsSegmentation)
+add_subdirectory(MarkupsToSurface)
 ## NEXT_MODULE
 
 #-----------------------------------------------------------------------------
