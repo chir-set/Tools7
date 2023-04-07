@@ -303,6 +303,8 @@ class BodyIsolationLogic(ScriptedLoadableModuleLogic):
         
         if (not keepSegmentation):
             slicer.mrmlScene.RemoveNode(segmentationNode)
+        else:
+            segmentationNode.SetReferenceImageGeometryParameterFromVolumeNode(splitVolumeNode)
 
         stopTime = time.time()
         logging.info(f'Processing completed in {stopTime-startTime:.2f} seconds')
