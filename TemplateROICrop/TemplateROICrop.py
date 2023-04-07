@@ -186,20 +186,18 @@ class TemplateROICropLogic(ScriptedLoadableModuleLogic):
     displayNode.SetLevel(400)
     
     roi=slicer.util.loadMarkups(ROITemplateSelectorPath)
+    return self.basicCropVolume(inputVolume, roi)
     """
     TODO: Prevent the file path from being added to the recent history list. Or delete the entry. Perhaps Slicer should prevent duplicate entries in that list.
     """
 
-    # https://www.snip2code.com/Snippet/707153/Loads-the-volume-and-performs-the-Volume
-    # volumeNode = slicer.util.getNode('CTA-cardio')
-
+  def basicCropVolume(self, inputVolume, roi, interpolate = False):
     cropLogic = slicer.modules.cropvolume.logic()
     cvpn = slicer.vtkMRMLCropVolumeParametersNode()
 
     cvpn.SetROINodeID(roi.GetID())
     cvpn.SetInputVolumeNodeID(inputVolume.GetID())
-    cvpn.SetVoxelBased(True)
-    cvpn.VoxelBasedOn()
+    cvpn.SetVoxelBased(not interpolate)
     cropLogic.Apply(cvpn)
     roi.SetDisplayVisibility(False)
     
