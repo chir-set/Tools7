@@ -48,7 +48,7 @@ and Steve Pieper, Isomics, Inc. and was partially funded by NIH grant 3P41RR0132
 @parameterNodeWrapper
 class BodyIsolationParameterNode:
     inputVolume: slicer.vtkMRMLScalarVolumeNode
-    keepSegmentation: Annotated[bool, Default(False)]
+    keepSegmentation: bool = False
 
 #
 # BodyIsolationWidget
@@ -170,14 +170,10 @@ class BodyIsolationWidget(ScriptedLoadableModuleWidget, VTKObservationMixin):
         # Create one if necessary.
         slicer.modules.segmenteditor.widgetRepresentation()
         
-        volumeNode = self.ui.inputSelector.currentNode()
-        if volumeNode is None:
-            self.showStatusMessage("Volume node is None.")
-            return
-        
         with slicer.util.tryWithErrorDisplay("Failed to compute results.", waitCursor=True):
             
-            splitVolumeNode = self.logic.process(volumeNode, self._parameterNode.keepSegmentation)
+            splitVolumeNode = self.logic.process(self._parameterNode.inputVolume,
+                                                 self._parameterNode.keepSegmentation)
             self.ui.inputSelector.setCurrentNode(splitVolumeNode)
             
 #
@@ -201,8 +197,7 @@ class BodyIsolationLogic(ScriptedLoadableModuleLogic):
         For a 512x512x2231  volume, 16 GB RAM *may* be insufficient.
         """
         if not volumeNode:
-            logging.info("Volume node is None.")
-            return
+            raise ValueError("Input volume is invalid.")
 
         import time
         startTime = time.time()
