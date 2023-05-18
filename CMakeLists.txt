@@ -25,6 +25,7 @@ add_subdirectory(Silhouette)
 add_subdirectory(BodyIsolation)
 add_subdirectory(ArteryPartsSegmentation)
 add_subdirectory(MarkupsToSurface)
+add_subdirectory(GuidedVeinSegmentation)
 ## NEXT_MODULE
 
 #-----------------------------------------------------------------------------
