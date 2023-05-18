@@ -12,6 +12,8 @@
 
 [Markups to surface](https://github.com/chir-set/Tools7/tree/master/MarkupsToSurface/) : Create models and segments from markups nodes.
 
+[Guided vein segmentation](https://github.com/chir-set/Tools7/tree/master/GuidedVeinSegmentation/) :  segment a *major* vein.
+
 ### License
 
 This work, as a whole, is licensed under the terms of the [CeCILL-B](http://cecill.info/licences/Licence_CeCILL-B_V1-en.txt) free software license agreement (BSD style).
