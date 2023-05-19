@@ -18,5 +18,5 @@ Finally, the result may be unusable sometimes.
 
 ### Disclaimer
 
-Experimental work. Do not use otherwise.
+Use at your own risks.
 
