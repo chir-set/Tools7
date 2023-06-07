@@ -14,7 +14,7 @@ Select an input node, and at least a model and/or a segmentation output node. Ap
 
 ### Notes
 
-For the [Shape](https://github.com/chir-set/SlicerExtraMarkups)::Ring and Shape::Disk node, a created segment will vanish if 3D display is switched On/Off/On. This is expected.
+For the [Shape](https://github.com/chir-set/SlicerExtraMarkups)::Ring, Shape::Disk and Shape::Arc node, a created segment will vanish if 3D display is switched On/Off/On. This is expected.
 
 ### Disclaimer
 
