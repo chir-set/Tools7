@@ -236,7 +236,6 @@ class SilhouetteLogic(ScriptedLoadableModuleLogic):
             logging.info("Could not create closed surface representation.")
             return
         segmentPolyData = vtk.vtkPolyData()
-        segmentID = editor.currentSegmentID()
         segmentation.GetClosedSurfaceRepresentation(segmentID, segmentPolyData)
         if segmentPolyData.GetNumberOfPoints() == 0:
             logging.info("Segment polydata is empty.")
